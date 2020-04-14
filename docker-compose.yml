@@ -1,0 +1,10 @@
+version: "3.6"
+
+services:
+  mta-module-builder:
+    container_name: mta-server-module-linux-builder
+    build: ./docker/mta-server-module-linux-builder
+    command: >
+      sh -c "yarn"
+    volumes:
+      - ./:/usr/src/module/
