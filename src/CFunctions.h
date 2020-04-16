@@ -23,10 +23,19 @@ class CFunctions;
 #include <stdio.h>
 
 #include "include/ILuaModuleManager.h"
+#include "hiredis.h"
+
 extern ILuaModuleManager10* pModuleManager;
 
 class CFunctions
 {
+private:
+    static int PopulateTableWithReply(lua_State* luaVM, redisReply* reply);
 public:
-    static int HelloWorld(lua_State* luaVM);
+    static int CreateRedisClient(lua_State* luaVM);
+    static int RedisClientPing(lua_State* luaVM);
+    static int RedisClientCommand(lua_State* luaVM);
+    static int RedisClientSet(lua_State* luaVM);
+    static int RedisClientGet(lua_State* luaVM);
+    static int RedisClientDestroy(lua_State* luaVM);
 };

@@ -17,11 +17,21 @@
  *********************************************************/
 
 /** MODULE SPECIFIC INFORMATION **/
-#define MODULE_NAME         "Base Module"
-#define MODULE_AUTHOR       "anon"
+#define MODULE_NAME         "Redis Module"
+#define MODULE_AUTHOR       "ZoLo"
 #define MODULE_VERSION      1.0
 
-#include <string.h>
+#include <algorithm>
+#include <list>
+#include <map>
+#include <set>
+#include <string>
+#include <string_view>
+#include <sstream>
+#include <vector>
+#include <cstdio>
+#include <cstring>
+
 #include "Common.h"
 #include "CFunctions.h"
 #include "include/ILuaModuleManager.h"

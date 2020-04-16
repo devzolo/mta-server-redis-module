@@ -45,6 +45,53 @@
         "freeglut_std.h": "c",
         "map": "cpp",
         "xtree": "cpp",
-        "cpp_redis": "cpp"
-    }
+        "cpp_redis": "cpp",
+        "array": "cpp",
+        "atomic": "cpp",
+        "clocale": "cpp",
+        "condition_variable": "cpp",
+        "ios": "cpp",
+        "iostream": "cpp",
+        "istream": "cpp",
+        "iterator": "cpp",
+        "optional": "cpp",
+        "ostream": "cpp",
+        "set": "cpp",
+        "shared_mutex": "cpp",
+        "sstream": "cpp",
+        "streambuf": "cpp",
+        "xfacet": "cpp",
+        "xiosbase": "cpp",
+        "xlocinfo": "cpp",
+        "xlocnum": "cpp",
+        "cfloat": "cpp"
+    },
+
+    // Define o tema do VSCode
+    "workbench.colorTheme": "Dracula",
+
+    // Aumenta a fonte do terminal
+    "terminal.integrated.fontSize": 14,
+
+    // Define o tema dos ícones na sidebar
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.editor.labelFormat": "short",
+
+    // Configura o tamanho e familia da fonte
+    "editor.tabSize": 2,
+    "editor.fontSize": 14,
+    "editor.lineHeight": 18,
+    "editor.fontFamily": "'Fira Code Retina', Consolas, 'Courier New', monospace",
+    "editor.fontLigatures": true,
+
+    "explorer.compactFolders": false,
+    "editor.renderLineHighlight": "gutter",
+
+    "extensions.ignoreRecommendations": false,
+
+    "breadcrumbs.enabled": true,
+
+
+
 }

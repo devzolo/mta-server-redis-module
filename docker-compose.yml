@@ -8,3 +8,4 @@ services:
       sh -c "yarn"
     volumes:
       - ./:/usr/src/module/
+      #- F:/Codes/GitHub/_________MTA__________/mta-gangwar/server/modules/x64/:/usr/src/module/bin/linux/x64/

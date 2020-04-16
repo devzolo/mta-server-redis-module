@@ -1,1 +1,1 @@
-Modules are extensions for Multi Theft Auto's Lua core, allowing the integration and use of custom Lua functions that have been written in C++, and compiled as a DLL or SO file. Modules are commonly used to create functions for such purposes that Multi Theft Auto lacks, such as sockets. All modules listed here are not distributed with Multi Theft Auto, and must be manually installed.
+https://redis.js.org/#-api-rediscreateclient

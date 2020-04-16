@@ -3,7 +3,7 @@
     'platform': '<(OS)',
     'build_arch': '<!(node -p "process.arch")',
     'build_win_platform': '<!(node -p "process.arch==\'ia32\'?\'Win32\':process.arch")',
-    'module_name': 'ml_hello'
+    'module_name': 'ml_redis'
   },
   'conditions': [
     # Replace gyp platform with node platform, blech
@@ -15,7 +15,7 @@
     {
       'target_name': '<(module_name)',
       'type': 'shared_library',
-      "dependencies" : [ "lua5.1s" ],
+      "dependencies" : [ "lua5.1s", "hiredis0.14.1s" ],
       "cflags!": [ "-fno-exceptions", "-std=c++11" ],
       "cflags_cc!": [ "-fno-exceptions" ],
       'sources': [
@@ -24,14 +24,20 @@
         "src/CFunctions.cpp",
         "src/CThread.cpp",
         "src/CThreadData.cpp",
-        "src/ml_base.cpp",
+        "src/ml_redis.cpp",
       ],
       'defines' : [],
       "include_dirs": [
         "./"
-        "./vendor/lua/src"
+        "./vendor/lua/src",
+        "./vendor/hiredis-0.14.1"
       ],
-      'msvs_disabled_warnings': [4101, 4293, 4018, 4334]
+      'msvs_disabled_warnings': [4101, 4293, 4018, 4334],
+      'msvs_settings': {
+        'VCCLCompilerTool': {
+          'ExceptionHandling': '2',  # /EHsc
+        },
+      }
     },
     {
       'target_name': 'lua5.1s',
@@ -78,6 +84,29 @@
       'msvs_disabled_warnings': [4101, 4293, 4018, 4334]
     },
     {
+      'target_name': 'hiredis0.14.1s',
+      'type': 'static_library',
+      "cflags!": [ "-fno-exceptions" ],
+      "cflags_cc!": [ "-fno-exceptions" ],
+      'sources': [
+        "vendor/hiredis-0.14.1/alloc.c",
+        "vendor/hiredis-0.14.1/async.c",
+        "vendor/hiredis-0.14.1/dict.c",
+        "vendor/hiredis-0.14.1/hiredis.c",
+        "vendor/hiredis-0.14.1/net.c",
+        "vendor/hiredis-0.14.1/read.c",
+        "vendor/hiredis-0.14.1/sds.c",
+        "vendor/hiredis-0.14.1/test.c",
+      ],
+      'defines' : [],
+      'libraries': [],
+      "include_dirs": [
+        "./vendor/hiredis-0.14.1"
+      ],
+      'library_dirs' : [],
+      'msvs_disabled_warnings': [4101, 4293, 4018, 4334]
+    },
+    {
       "target_name": "copy_modules",
       "type":"none",
       "dependencies" : [ "<(module_name)" ],
@@ -85,7 +114,7 @@
         {
           'destination': '<(module_root_dir)/bin/<(platform)/<(target_arch)',
           'files':  ['<(module_root_dir)/build/Release/<(lib_target)<(module_name)<(shared_library_ext)']
-        }
+        },
       ]
     }
   ]

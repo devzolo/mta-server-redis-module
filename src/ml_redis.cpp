@@ -16,7 +16,7 @@
  *
  *********************************************************/
 
-#include "ml_base.h"
+#include "ml_redis.h"
 
 ILuaModuleManager10* pModuleManager = NULL;
 
@@ -37,7 +37,20 @@ MTAEXPORT void RegisterFunctions(lua_State* luaVM)
 {
     if (pModuleManager && luaVM)
     {
-        pModuleManager->RegisterFunction(luaVM, "helloWorld", CFunctions::HelloWorld);
+      std::map<const char*, lua_CFunction> functions{
+        {"createRedisClient", CFunctions::CreateRedisClient},
+        {"redisClientPing", CFunctions::RedisClientPing},
+        {"redisClientCommand", CFunctions::RedisClientCommand},
+        {"redisClientSet", CFunctions::RedisClientSet},
+        {"redisClientGet", CFunctions::RedisClientGet},
+        {"redisClientDestroy", CFunctions::RedisClientDestroy},
+
+      };
+
+      // Add functions
+      for (const auto& pair : functions) {
+          pModuleManager->RegisterFunction(luaVM, pair.first, pair.second);
+      }
     }
 }
 
